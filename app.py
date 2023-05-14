@@ -1,10 +1,6 @@
 # import
 
-import os
-import os.path
-import signal
-import time
-import requests
+import os, signal, time, requests
 from colorama import init, Fore, Back
 from pytube import YouTube
 from tqdm import tqdm
@@ -122,8 +118,10 @@ if mode == 1:
             for file in existing_files:
                 os.remove(os.path.join(download_dir, file))
         else:
-            print("error")
-
+            print("")
+    # ! añadir [contador] yt.title en filename sin joder el codigo entero
+    # * todo es culpa de la s de yt.titles
+    
     download_videos(valid_urls, download_dir)
     print(Fore.LIGHTBLUE_EX + "\n[App]: " + Fore.WHITE + "¿Convertir a mp3?\n")
     convert = input(Back.BLACK + Fore.WHITE + "¿s o n?" + " " + Fore.BLACK + Back.RESET + "\ue0b0 " + Fore.WHITE)
@@ -181,3 +179,4 @@ if mode == 2:
             audio.close()
             video.close()
         else: print(Fore.LIGHTBLUE_EX + "\n[App]: " + Fore.WHITE + "Saliendo...")
+
