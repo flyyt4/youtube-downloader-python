@@ -1,11 +1,9 @@
-# import
-
 import os, signal, time, requests
-from colorama import init, Fore, Back
-from pytube import YouTube
-from tqdm import tqdm
 from urllib.parse import urlparse, parse_qs
-from moviepy.editor import *
+from colorama import init, Fore, Back #  colorama
+from pytube import YouTube #  pytube
+from tqdm import tqdm # tqdm
+from moviepy.editor import * # moviepy
 
 init()
 os.system("cls")
@@ -57,16 +55,19 @@ def validate_youtube_urls(urls):
         # Verificar si es una URL de YouTube
         parsed_url = urlparse(url)
         if parsed_url.netloc != 'www.youtube.com' or parsed_url.path != '/watch':
+            print("1")
             print(Fore.LIGHTBLUE_EX + "[App]: " + Fore.BLUE + f"{url} " + Fore.RED + "No es una url de youtube")
             continue
         
         # Obtener el ID del video
         video_id = parse_qs(parsed_url.query)['v'][0]
+        print(video_id)
         
         # Verificar si el video existe
         response = requests.get(f"https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v={video_id}")
         if response.status_code != 200:
             print(Fore.LIGHTBLUE_EX + "[App]: " + Fore.BLUE + f"{url} " + Fore.RED + "El video no existe")
+            print("2")
             continue
         
         # Si llegamos hasta aquí, la URL es válida y el video existe
